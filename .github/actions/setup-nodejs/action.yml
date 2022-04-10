@@ -1,0 +1,16 @@
+
+name: 'Setup NodeJS'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ✂️ Extract node version
+      id: nvm
+      shell: bash
+      run: echo ::set-output name=NVMRC::$(cat .nvmrc)
+
+    - name: ⚙️ Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '${{ steps.nvm.outputs.NVMRC }}'
+        cache: npm

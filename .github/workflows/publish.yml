@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: ⏬ Checkout
+        uses: actions/checkout@v2
+
+      - name: ⚙️ Setup NodeJS
+        uses: './.github/actions/setup-nodejs'
+
+      - name: 🔋 Install dependencies
+        run: npm -s ci
+
+      - name: 👨‍🔧 Build
+        run: npm run build
+
+      - name: 🚀 Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: build
