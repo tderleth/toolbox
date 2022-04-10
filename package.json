@@ -1,6 +1,7 @@
 {
   "name": "toolbox",
   "version": "0.1.0",
+  "homepage": "https://tderleth.github.io/toolbox",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
